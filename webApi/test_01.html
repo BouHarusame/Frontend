@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <style class="textarea" style="display: block; -webkit-user-modify: read-write-plaintext-only;">
+        html {
+          background-color: #fff;
+        }
+        .edit:focus {
+          outline: 1px solid #000
+        }
+      </style>
+  <div id="nav" style="background: #FFF">
+    <ul class="nav">
+      <li>
+        <p data-name="webapi" data-value="dataset">webapi dataset</p>
+      </li>
+      <li>
+        <div class="hide" hidden>这个内容被隐藏了</div>
+      </li>
+      <li>
+        <div class="edit" contenteditable onblur="handleBlur()">这是一个可以编辑的模块</div>
+      </li>
+      <li><textarea spellcheck="true"></textarea></li>
+      <li><div onClick="downloadImage('https://user-gold-cdn.xitu.io/2019/8/23/16cbebe6a2ee3427?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1', 'avatar')">下载</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // const nav = document.querySelector('#nav') //获取文档中id="nav"的元素
+    // const navClass = document.querySelector('.nav') //获取文档中class="nav"的元素
+    // const ele = document.querySelector('#nav li:first-child') //获取文档中id="nav"下面的第一个li元素
+    // console.log(nav, navClass, ele)
+
+    // const list = document.querySelectorAll('li')
+    // console.log(list)
+
+    // const parent = ele.closest('#nav')
+    // console.log(parent)
+
+    // const res = document.querySelector('p').dataset
+    // console.log(res)
+
+    // let str = '?name=蜘蛛侠&age=16'
+    // const parseUrl = new URLSearchParams(str).get('name')
+    // console.log(parseUrl)
+
+    // document.querySelector('.hide').hidden = false
+    // setTimeout(() => {
+    //   document.querySelector('.hide').hidden = true
+    // }, 3000 )
+    // let hidden = document.querySelector('.hide').hidden = false
+    // console.log(hidden)
+
+    // function handleBlur() {
+    //   console.log(11111)
+    //   console.log(document.querySelector('.edit').innerText)
+    // }
+
+    // const elem = document.querySelector('.edit').getBoundingClientRect()
+    // console.log(elem)
+
+    // const contain = document.querySelector('.nav li:first-child').contains(document.querySelector('p'))
+
+    // const downloadImage = (url, name) => {
+    //   // 实例化画布
+    //   let canvas = document.createElement("canvas");
+    //   let context = canvas.getContext("2d");
+
+    //   // 实例化一个图片对象
+    //   let image = new Image();
+    //   image.crossOrigin = "Anonymous";
+    //   image.src = url;
+
+    //   // 当图片加载完毕
+    //   image.onload = () => {
+    //     // 将图片画在画布上
+    //     canvas.height = image.height;
+    //     canvas.width = image.width;
+    //     context.drawImage(image, 0, 0);
+
+    //     // 将画布的内容转换成base64地址
+    //     let dataURL = canvas.toDataURL("image/png");
+
+    //     // 创建a标签模拟点击进行下载
+    //     let a = document.createElement("a");
+    //     a.hidden = true;
+    //     a.href = dataURL;
+    //     a.download = name;
+
+    //     document.body.appendChild(a);
+    //     a.click();
+    //   }
+    // }
+    // downloadImage('https://user-gold-cdn.xitu.io/2019/8/23/16cbebe6a2ee3427?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1', 'avatar')
+
+    // window.addEventListener("follow", event => {
+    //   console.log(event.detail); // 输出 {name: "前端宇宙情报局"}
+    // });
+    // window.dispatchEvent(new CustomEvent("follow", {
+    //   detail: {
+    //     name: "前端宇宙情报局"
+    //   }
+    // }));
+
+    // const notice = new Notification("前端宇宙情报局", {
+    //   body: "这20个不常用的Web API真的有用吗?，别问，问就是有用🈶",
+    //   icon: "我的掘金头像",
+    //   data: {
+    //     url: "https://www.baidu.com"
+    //   }
+    // });
+    
+
+    // let permission = Notification.permission;
+    // Notification.requestPermission().then(res => {
+    //   console.log(res)
+    //   if (res === 'granted') {
+    //     console.log('yes')
+    //     var notification = new Notification("Hi there!");
+        // const notice = new Notification("前端宇宙情报局", {
+        //   body: "这20个不常用的Web API真的有用吗?，别问，问就是有用🈶",
+        //   icon: "我的掘金头像",
+        //   data: {
+        //     url: "https://www.baidu.com"
+        //   }
+        // });
+        // 点击回调
+        // notice.onclick = () => {
+        //   window.open(notice.data.url); // 当用户点击通知时，在浏览器打开百度网站
+        // }
+    //   }
+    //   else if (res === 'denied') {
+    //     console.log('no')
+    //   } else {
+    //     // 其他状态，可以重新发送授权提示
+    //     Notification.requestPermission();
+    //   }
+    // })
+
+
+    const launchFullScreen = (elem = document.documentElement) => {
+      if(elem.requestFullScreen) {
+        elem.requestFullScreen();
+      } else if(elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+      } else if(elem.webkitRequestFullScreen) {
+        elem.webkitRequestFullScreen();
+      }
+    }
+    const nav = document.querySelector('#nav')
+    nav.addEventListener('click', function () {
+      launchFullScreen(nav)
+    })
+    nav.addEventListener('dblclick', function () {
+      console.log(11111)
+      exitFullScreen()
+    })
+    /**
+ * @method exitFullScreen 关闭全屏
+ */
+const exitFullScreen = () => {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitCancelFullScreen) {
+    document.webkitCancelFullScreen();
+  }
+}
+  </script>
+</body>
+</html>
