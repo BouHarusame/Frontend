@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      display: block;
+      /* width: 100px;
+      height:100px; */
+    }
+    div {
+      /* padding: 300px; */
+    }
+  </style>
+</head>
+<body>
+
+    <video src="https://www.w3school.com.cn/i/movie.ogg" controls=""></video>
+
+  <div class="box">
+    <img src="./img/1.jpg" data-src="https://b-ssl.duitang.com/uploads/blog/201312/04/20131204184148_hhXUT.jpeg">
+    <img src="./img/1.jpg" data-src="http://pic37.nipic.com/20140119/9353120_232654315191_2.jpg">
+    <img src="./img/1.jpg" data-src="http://pic26.nipic.com/20121230/9034633_172138299000_2.jpg">
+  <!-- more images -->
+  </div>
+<script>
+  let video = document.querySelector('video');
+  let isPaused = false; /* Flag for auto-paused video */
+  let observer = new IntersectionObserver((entries, observer) => { 
+    entries.forEach(entry => {
+      if(entry.intersectionRatio!=1  && !video.paused){
+        video.pause(); isPaused = true;
+      }
+      else if(isPaused) {video.play(); isPaused=false}
+    });
+  }, {threshold: 1});
+  observer.observe(video);
+
+  // let observer = new IntersectionObserver(
+  // (entries, observer) => { 
+  //   entries.forEach(entry => {
+  //       /* 替换属性 */
+  //       console.log(1111)
+  //     entry.target.src = entry.target.dataset.src;
+  //     observer.unobserve(entry.target);
+  //   });
+  // }, 
+  // {rootMargin: "0px 0px -200px 0px"});
+  // // setTimeout(() => {
+  // //   document.querySelectorAll('img').forEach(img => { observer.observe(img) });
+  // // }, 2000)
+  // document.querySelectorAll('img').forEach(img => { observer.observe(img) });
+</script>
+</body>
+</html>
